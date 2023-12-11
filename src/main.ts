@@ -120,6 +120,6 @@ function resolveVersionInput(): string {
 
     core.info(`Resolved ${versionFileInput} as ${version}`);
   }
-  
+
   return version;
 }

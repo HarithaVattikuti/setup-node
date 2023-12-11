@@ -3,7 +3,6 @@ import * as exec from '@actions/exec';
 
 //export function parseNodeVersionFile(contents: string): string {
 export function parseNodeVersionFile(contents: string): string | null {
-
   let nodeVersion: string | undefined;
 
   // Try parsing the file as an NPM `package.json` file.
@@ -31,7 +30,6 @@ export function parseNodeVersionFile(contents: string): string | null {
         return null;
       }
     }
-
   } catch {
     core.info('Node version file is not JSON file');
   }
