@@ -105,6 +105,7 @@ function resolveVersionInput(): string {
       );
     }
 
+    
     //version = parseNodeVersionFile(fs.readFileSync(versionFilePath, 'utf8'));
     const parsedVersion = parseNodeVersionFile(
       fs.readFileSync(versionFilePath, 'utf8')
