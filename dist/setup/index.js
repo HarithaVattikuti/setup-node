@@ -92567,6 +92567,7 @@ const restoreCache = (packageManager, cacheDependencyPath) => __awaiter(void 0, 
         throw new Error(`Caching for '${packageManager}' is not supported`);
     }
     const platform = process.env.RUNNER_OS;
+    const arch = process.env.RUNNER_ARCH;
     const cachePaths = yield (0, cache_utils_1.getCacheDirectories)(packageManagerInfo, cacheDependencyPath);
     core.saveState(constants_1.State.CachePaths, cachePaths);
     const lockFilePath = cacheDependencyPath
@@ -92576,7 +92577,7 @@ const restoreCache = (packageManager, cacheDependencyPath) => __awaiter(void 0, 
     if (!fileHash) {
         throw new Error('Some specified paths were not resolved, unable to cache dependencies.');
     }
-    const keyPrefix = `node-cache-${platform}-${packageManager}`;
+    const keyPrefix = `node-cache-${platform}-${arch}-${packageManager}`;
     const primaryKey = `${keyPrefix}-${fileHash}`;
     core.debug(`primary key is ${primaryKey}`);
     core.saveState(constants_1.State.CachePrimaryKey, primaryKey);
