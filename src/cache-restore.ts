@@ -44,6 +44,7 @@ export const restoreCache = async (
     );
   }
 
+  core.debug("arch is "+arch);
   const keyPrefix = `node-cache-${platform}-${arch}-${packageManager}`;
   const primaryKey = `${keyPrefix}-${fileHash}`;
   core.debug(`primary key is ${primaryKey}`);

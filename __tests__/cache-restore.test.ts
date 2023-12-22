@@ -12,7 +12,7 @@ describe('cache-restore', () => {
     process.env.RUNNER_OS = 'Linux';
   }
   if (!process.env.RUNNER_ARCH) {
-    process.env.RUNNER_ARCH = 'X64';
+    process.env.RUNNER_ARCH = 'x64';
   }
   const platform = process.env.RUNNER_OS;
   const arch = process.env.RUNNER_ARCH;
