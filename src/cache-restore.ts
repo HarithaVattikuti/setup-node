@@ -22,7 +22,7 @@ export const restoreCache = async (
     throw new Error(`Caching for '${packageManager}' is not supported`);
   }
   const platform = process.env.RUNNER_OS;
-  const arch = os.arch();
+  const arch = process.env.RUNNER_ARCH;
 
   core.debug(`PM info is ${packageManagerInfo}`);
   core.debug(`cacheDependencyPath info is ${cacheDependencyPath}`);
