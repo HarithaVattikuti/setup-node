@@ -23,11 +23,15 @@ export const restoreCache = async (
   const platform = process.env.RUNNER_OS;
   const arch = process.env.RUNNER_ARCH;
 
+  core.debug(`PM info is ${packageManagerInfo}`);
+  core.debug(`cacheDependencyPath info is ${cacheDependencyPath}`);
+
   const cachePaths = await getCacheDirectories(
     packageManagerInfo,
     cacheDependencyPath
   );
   core.saveState(State.CachePaths, cachePaths);
+  core.debug(`cachePaths info is ${cachePaths}`);
   const lockFilePath = cacheDependencyPath
     ? cacheDependencyPath
     : findLockFile(packageManagerInfo);

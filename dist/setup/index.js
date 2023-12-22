@@ -92568,8 +92568,11 @@ const restoreCache = (packageManager, cacheDependencyPath) => __awaiter(void 0, 
     }
     const platform = process.env.RUNNER_OS;
     const arch = process.env.RUNNER_ARCH;
+    core.debug(`PM info is ${packageManagerInfo}`);
+    core.debug(`cacheDependencyPath info is ${cacheDependencyPath}`);
     const cachePaths = yield (0, cache_utils_1.getCacheDirectories)(packageManagerInfo, cacheDependencyPath);
     core.saveState(constants_1.State.CachePaths, cachePaths);
+    core.debug(`cachePaths info is ${cachePaths}`);
     const lockFilePath = cacheDependencyPath
         ? cacheDependencyPath
         : findLockFile(packageManagerInfo);
