@@ -92559,7 +92559,6 @@ const core = __importStar(__nccwpck_require__(2186));
 const glob = __importStar(__nccwpck_require__(8090));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const fs_1 = __importDefault(__nccwpck_require__(7147));
-const os_1 = __importDefault(__nccwpck_require__(2037));
 const constants_1 = __nccwpck_require__(9042);
 const cache_utils_1 = __nccwpck_require__(1678);
 const restoreCache = (packageManager, cacheDependencyPath) => __awaiter(void 0, void 0, void 0, function* () {
@@ -92568,7 +92567,7 @@ const restoreCache = (packageManager, cacheDependencyPath) => __awaiter(void 0, 
         throw new Error(`Caching for '${packageManager}' is not supported`);
     }
     const platform = process.env.RUNNER_OS;
-    const arch = os_1.default.arch();
+    const arch = process.env.RUNNER_ARCH;
     core.debug(`PM info is ${packageManagerInfo}`);
     core.debug(`cacheDependencyPath info is ${cacheDependencyPath}`);
     const cachePaths = yield (0, cache_utils_1.getCacheDirectories)(packageManagerInfo, cacheDependencyPath);
