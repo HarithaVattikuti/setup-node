@@ -3,6 +3,7 @@ import * as core from '@actions/core';
 import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 
 import {State} from './constants';
 import {
@@ -21,12 +22,17 @@ export const restoreCache = async (
     throw new Error(`Caching for '${packageManager}' is not supported`);
   }
   const platform = process.env.RUNNER_OS;
+  const arch = process.env.RUNNER_ARCH;
+
+  core.debug(`PM info is ${packageManagerInfo}`);
+  core.debug(`cacheDependencyPath info is ${cacheDependencyPath}`);
 
   const cachePaths = await getCacheDirectories(
     packageManagerInfo,
     cacheDependencyPath
   );
   core.saveState(State.CachePaths, cachePaths);
+  core.debug(`cachePaths info is ${cachePaths}`);
   const lockFilePath = cacheDependencyPath
     ? cacheDependencyPath
     : findLockFile(packageManagerInfo);
@@ -38,7 +44,8 @@ export const restoreCache = async (
     );
   }
 
-  const keyPrefix = `node-cache-${platform}-${packageManager}`;
+  core.debug("arch is "+arch);
+  const keyPrefix = `node-cache-${platform}-${arch}-${packageManager}`;
   const primaryKey = `${keyPrefix}-${fileHash}`;
   core.debug(`primary key is ${primaryKey}`);
 
