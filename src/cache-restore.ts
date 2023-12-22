@@ -3,6 +3,7 @@ import * as core from '@actions/core';
 import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 
 import {State} from './constants';
 import {
@@ -21,7 +22,7 @@ export const restoreCache = async (
     throw new Error(`Caching for '${packageManager}' is not supported`);
   }
   const platform = process.env.RUNNER_OS;
-  const arch = process.env.RUNNER_ARCH;
+  const arch = os.arch();
 
   core.debug(`PM info is ${packageManagerInfo}`);
   core.debug(`cacheDependencyPath info is ${cacheDependencyPath}`);
