@@ -8,4 +8,4 @@ on:
 jobs:
   call-update-configuration-files:
     name: Update configuration files
-    uses: kbdharun/reusable-workflows/.github/workflows/update-config-files.yml@main
+    uses: HarithaVattikuti/reusable-workflows/.github/workflows/update-config-files.yml@testrw

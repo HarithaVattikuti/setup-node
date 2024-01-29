@@ -11,4 +11,4 @@ on:
 jobs:
   call-codeQL-analysis:
     name: CodeQL analysis
-    uses: kbdharun/reusable-workflows/.github/workflows/codeql-analysis.yml@main
+    uses: HarithaVattikuti/reusable-workflows/.github/workflows/codeql-analysis.yml@testrw
