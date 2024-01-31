@@ -252,7 +252,7 @@ describe('setup-node', () => {
     whichSpy.mockImplementation(cmd => {
       return `some/${cmd}/path`;
     });
-    
+
     await main.run();
 
     const expPath = path.join(toolPath, 'bin');

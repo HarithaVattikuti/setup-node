@@ -147,7 +147,7 @@ describe('main tests', () => {
       whichSpy.mockImplementation(cmd => {
         return `some/${cmd}/path`;
       });
-      
+
       await util.printEnvDetailsAndSetOutput();
 
       expect(setOutputSpy).toHaveBeenCalledWith('node-version', obj['node']);
@@ -278,4 +278,3 @@ describe('main tests', () => {
     });
   });
 });
-
