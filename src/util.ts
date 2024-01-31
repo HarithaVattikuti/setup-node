@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as io from '@actions/io';
 
 import fs from 'fs';
 import path from 'path';
@@ -63,7 +64,8 @@ export async function printEnvDetailsAndSetOutput() {
   core.startGroup('Environment details');
 
   const promises = ['node', 'npm', 'yarn'].map(async tool => {
-    const output = await getToolVersion(tool, ['--version']);
+    const pathTool = await io.which(tool, false);
+    const output = pathTool ? await getToolVersion(tool, ['--version']) : '';
 
     return {tool, output};
   });
@@ -105,3 +107,4 @@ export const unique = () => {
     return true;
   };
 };
+

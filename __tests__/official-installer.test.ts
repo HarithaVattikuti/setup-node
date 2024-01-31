@@ -249,6 +249,10 @@ describe('setup-node', () => {
     exSpy.mockImplementation(async () => '/some/other/temp/path');
     cacheSpy.mockImplementation(async () => toolPath);
 
+    whichSpy.mockImplementation(cmd => {
+      return `some/${cmd}/path`;
+    });
+    
     await main.run();
 
     const expPath = path.join(toolPath, 'bin');
