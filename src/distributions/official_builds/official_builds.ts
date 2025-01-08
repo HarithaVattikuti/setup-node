@@ -186,7 +186,7 @@ export default class OfficialBuilds extends BaseDistribution {
       'actions',
       'node-versions',
       this.nodeInfo.auth,
-      'main'
+      'update-versions-manifest-file'
     );
   }
 
