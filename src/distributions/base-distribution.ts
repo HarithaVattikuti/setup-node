@@ -50,6 +50,8 @@ export default abstract class BaseDistribution {
   }
 
   protected async findVersionInDist(nodeJsVersions?: INodeVersion[]) {
+    core.debug(`evaluating ${nodeJsVersions} in findVersionInDist`);
+
     if (!nodeJsVersions) {
       nodeJsVersions = await this.getNodeJsVersions();
     }
@@ -99,6 +101,7 @@ export default abstract class BaseDistribution {
   protected async getNodeJsVersions(): Promise<INodeVersion[]> {
     const initialUrl = this.getDistributionUrl();
     const dataUrl = `${initialUrl}/index.json`;
+    core.debug(`evaluating dataUrl ${dataUrl}`);
 
     const response = await this.httpClient.getJson<INodeVersion[]>(dataUrl);
     return response.result || [];
@@ -298,9 +301,14 @@ export default abstract class BaseDistribution {
     nodeJsVersions.forEach((nodeVersion: INodeVersion) => {
       // ensure this version supports your os and platform
       if (nodeVersion.files.indexOf(dataFileName) >= 0) {
+        core.debug(`evaluating nodeVersion ${nodeVersion} `);
+
         versions.push(nodeVersion.version);
       }
     });
+    core.debug(`evaluating nodeJsVersions variable ${nodeJsVersions.length} `);
+
+    core.debug(`versions variable ${versions.length}`);
 
     return versions.sort(semver.rcompare);
   }

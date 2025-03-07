@@ -100113,6 +100113,7 @@ class BaseDistribution {
     }
     findVersionInDist(nodeJsVersions) {
         return __awaiter(this, void 0, void 0, function* () {
+            core.debug(`evaluating ${nodeJsVersions} in findVersionInDist`);
             if (!nodeJsVersions) {
                 nodeJsVersions = yield this.getNodeJsVersions();
             }
@@ -100150,6 +100151,7 @@ class BaseDistribution {
         return __awaiter(this, void 0, void 0, function* () {
             const initialUrl = this.getDistributionUrl();
             const dataUrl = `${initialUrl}/index.json`;
+            core.debug(`evaluating dataUrl ${dataUrl}`);
             const response = yield this.httpClient.getJson(dataUrl);
             return response.result || [];
         });
@@ -100314,9 +100316,12 @@ class BaseDistribution {
         nodeJsVersions.forEach((nodeVersion) => {
             // ensure this version supports your os and platform
             if (nodeVersion.files.indexOf(dataFileName) >= 0) {
+                core.debug(`evaluating nodeVersion ${nodeVersion} `);
                 versions.push(nodeVersion.version);
             }
         });
+        core.debug(`evaluating nodeJsVersions variable ${nodeJsVersions.length} `);
+        core.debug(`versions variable ${versions.length}`);
         return versions.sort(semver_1.default.rcompare);
     }
     translateArchToDistUrl(arch) {
