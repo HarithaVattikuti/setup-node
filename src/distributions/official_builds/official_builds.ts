@@ -189,7 +189,7 @@ export default class OfficialBuilds extends BaseDistribution {
       'actions',
       'node-versions',
       this.nodeInfo.mirror ? this.nodeInfo.mirrorToken : this.nodeInfo.auth,
-      'main'
+      'update-versions-manifest-file'
     );
   }
 
