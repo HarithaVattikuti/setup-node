@@ -112,6 +112,7 @@ export default class OfficialBuilds extends BaseDistribution {
         );
       } else {
         core.info((err as Error).message);
+        core.info('statuscode:' + (err instanceof tc.HTTPError ? err.httpStatusCode : 'N/A'));
       }
       core.debug((err as Error).stack ?? 'empty stack');
       core.info('Falling back to download directly from Node');
