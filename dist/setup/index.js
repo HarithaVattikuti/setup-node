@@ -57917,12 +57917,16 @@ class OfficialBuilds extends base_distribution_1.default {
         if (this.osPlat != 'win32') {
             toolPath = path_1.default.join(toolPath, 'bin');
         }
+        core.info(`Adding ${toolPath} to PATH`);
+        core.info(`basename - ${path_1.default.basename(path_1.default.dirname(toolPath))}`);
         core.addPath(toolPath);
     }
     addToolPath(toolPath) {
         if (this.osPlat != 'win32') {
             toolPath = path_1.default.join(toolPath, 'bin');
         }
+        core.info(`Adding ${toolPath} to PATH`);
+        core.info(`basename - ${path_1.default.basename(path_1.default.dirname(toolPath))}`);
         core.addPath(toolPath);
     }
     async downloadDirectlyFromNode() {

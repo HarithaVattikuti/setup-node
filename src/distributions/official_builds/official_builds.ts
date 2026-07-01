@@ -126,7 +126,8 @@ export default class OfficialBuilds extends BaseDistribution {
     if (this.osPlat != 'win32') {
       toolPath = path.join(toolPath, 'bin');
     }
-
+    core.info(`Adding ${toolPath} to PATH`);
+    core.info(`basename - ${path.basename(path.dirname(toolPath))}`);
     core.addPath(toolPath);
   }
 
@@ -134,7 +135,8 @@ export default class OfficialBuilds extends BaseDistribution {
     if (this.osPlat != 'win32') {
       toolPath = path.join(toolPath, 'bin');
     }
-
+    core.info(`Adding ${toolPath} to PATH`);
+    core.info(`basename - ${path.basename(path.dirname(toolPath))}`);
     core.addPath(toolPath);
   }
 
