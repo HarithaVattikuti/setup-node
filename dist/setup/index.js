@@ -57843,6 +57843,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(37484));
 const tc = __importStar(__nccwpck_require__(33472));
+const exec = __importStar(__nccwpck_require__(95236));
 const path_1 = __importDefault(__nccwpck_require__(16928));
 const base_distribution_1 = __importDefault(__nccwpck_require__(60709));
 class OfficialBuilds extends base_distribution_1.default {
@@ -57917,16 +57918,40 @@ class OfficialBuilds extends base_distribution_1.default {
         if (this.osPlat != 'win32') {
             toolPath = path_1.default.join(toolPath, 'bin');
         }
+        const expectedVersion = 'v' + path_1.default.basename(path_1.default.dirname(toolPath));
+        let actualVersion = '';
+        try {
+            const { stdout } = await exec.getExecOutput('node', ['--version'], {
+                silent: true
+            });
+            actualVersion = stdout.trim();
+        }
+        catch (error) {
+            core.warning(`Failed to get actual Node.js version: ${error.message}`);
+        }
         core.info(`Adding ${toolPath} to PATH`);
-        core.info(`basename - ${path_1.default.basename(path_1.default.dirname(toolPath))}`);
+        core.info(`expectedVersion - ${expectedVersion}`);
+        core.info(`actualVersion - ${actualVersion}`);
         core.addPath(toolPath);
     }
-    addToolPath(toolPath) {
+    async addToolPath(toolPath) {
         if (this.osPlat != 'win32') {
             toolPath = path_1.default.join(toolPath, 'bin');
         }
+        const expectedVersion = 'v' + path_1.default.basename(path_1.default.dirname(toolPath));
+        let actualVersion = '';
+        try {
+            const { stdout } = await exec.getExecOutput('node', ['--version'], {
+                silent: true
+            });
+            actualVersion = stdout.trim();
+        }
+        catch (error) {
+            core.warning(`Failed to get actual Node.js version: ${error.message}`);
+        }
         core.info(`Adding ${toolPath} to PATH`);
-        core.info(`basename - ${path_1.default.basename(path_1.default.dirname(toolPath))}`);
+        core.info(`expectedVersion - ${expectedVersion}`);
+        core.info(`actualVersion - ${actualVersion}`);
         core.addPath(toolPath);
     }
     async downloadDirectlyFromNode() {

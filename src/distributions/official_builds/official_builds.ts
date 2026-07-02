@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
+import * as exec from '@actions/exec';
 import path from 'path';
 
 import BaseDistribution from '../base-distribution';
@@ -126,17 +127,39 @@ export default class OfficialBuilds extends BaseDistribution {
     if (this.osPlat != 'win32') {
       toolPath = path.join(toolPath, 'bin');
     }
+    const expectedVersion = 'v' + path.basename(path.dirname(toolPath));
+    let actualVersion = '';
+    try {
+      const {stdout} = await exec.getExecOutput('node', ['--version'], {
+        silent: true
+      });
+      actualVersion = stdout.trim();
+    } catch (error) {
+      core.warning(`Failed to get actual Node.js version: ${(error as Error).message}`);
+    }
     core.info(`Adding ${toolPath} to PATH`);
-    core.info(`basename - ${path.basename(path.dirname(toolPath))}`);
+    core.info(`expectedVersion - ${expectedVersion}`);
+    core.info(`actualVersion - ${actualVersion}`);
     core.addPath(toolPath);
   }
 
-  protected addToolPath(toolPath: string) {
+  protected async addToolPath(toolPath: string) {
     if (this.osPlat != 'win32') {
       toolPath = path.join(toolPath, 'bin');
     }
+    const expectedVersion = 'v' + path.basename(path.dirname(toolPath));
+    let actualVersion = '';
+    try {
+      const {stdout} = await exec.getExecOutput('node', ['--version'], {
+        silent: true
+      });
+      actualVersion = stdout.trim();
+    } catch (error) {
+      core.warning(`Failed to get actual Node.js version: ${(error as Error).message}`);
+    }
     core.info(`Adding ${toolPath} to PATH`);
-    core.info(`basename - ${path.basename(path.dirname(toolPath))}`);
+    core.info(`expectedVersion - ${expectedVersion}`);
+    core.info(`actualVersion - ${actualVersion}`);
     core.addPath(toolPath);
   }
 
