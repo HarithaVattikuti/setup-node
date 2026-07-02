@@ -57918,6 +57918,7 @@ class OfficialBuilds extends base_distribution_1.default {
         if (this.osPlat != 'win32') {
             toolPath = path_1.default.join(toolPath, 'bin');
         }
+        core.addPath(toolPath);
         const expectedVersion = 'v' + path_1.default.basename(path_1.default.dirname(toolPath));
         let actualVersion = '';
         try {
@@ -57932,12 +57933,12 @@ class OfficialBuilds extends base_distribution_1.default {
         core.info(`Adding ${toolPath} to PATH`);
         core.info(`expectedVersion - ${expectedVersion}`);
         core.info(`actualVersion - ${actualVersion}`);
-        core.addPath(toolPath);
     }
     async addToolPath(toolPath) {
         if (this.osPlat != 'win32') {
             toolPath = path_1.default.join(toolPath, 'bin');
         }
+        core.addPath(toolPath);
         const expectedVersion = 'v' + path_1.default.basename(path_1.default.dirname(toolPath));
         let actualVersion = '';
         try {
@@ -57952,7 +57953,6 @@ class OfficialBuilds extends base_distribution_1.default {
         core.info(`Adding ${toolPath} to PATH`);
         core.info(`expectedVersion - ${expectedVersion}`);
         core.info(`actualVersion - ${actualVersion}`);
-        core.addPath(toolPath);
     }
     async downloadDirectlyFromNode() {
         const nodeJsVersions = await this.getNodeJsVersions();

@@ -127,7 +127,9 @@ export default class OfficialBuilds extends BaseDistribution {
     if (this.osPlat != 'win32') {
       toolPath = path.join(toolPath, 'bin');
     }
-    const expectedVersion = 'v' + path.basename(path.dirname(toolPath));
+   
+    core.addPath(toolPath);
+     const expectedVersion = 'v' + path.basename(path.dirname(toolPath));
     let actualVersion = '';
     try {
       const {stdout} = await exec.getExecOutput('node', ['--version'], {
@@ -140,13 +142,14 @@ export default class OfficialBuilds extends BaseDistribution {
     core.info(`Adding ${toolPath} to PATH`);
     core.info(`expectedVersion - ${expectedVersion}`);
     core.info(`actualVersion - ${actualVersion}`);
-    core.addPath(toolPath);
   }
 
   protected async addToolPath(toolPath: string) {
     if (this.osPlat != 'win32') {
       toolPath = path.join(toolPath, 'bin');
     }
+    
+    core.addPath(toolPath);
     const expectedVersion = 'v' + path.basename(path.dirname(toolPath));
     let actualVersion = '';
     try {
@@ -160,7 +163,6 @@ export default class OfficialBuilds extends BaseDistribution {
     core.info(`Adding ${toolPath} to PATH`);
     core.info(`expectedVersion - ${expectedVersion}`);
     core.info(`actualVersion - ${actualVersion}`);
-    core.addPath(toolPath);
   }
 
   protected async downloadDirectlyFromNode() {
