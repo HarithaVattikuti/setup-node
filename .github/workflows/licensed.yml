@@ -12,4 +12,4 @@ on:
 jobs:
   call-licensed:
     name: Licensed
-    uses: priyagupta108/reusable-workflows/.github/workflows/basic-validation.yml@update-licensed-tool
+    uses: priyagupta108/reusable-workflows/.github/workflows/licensed.yml@update-licensed-tool
