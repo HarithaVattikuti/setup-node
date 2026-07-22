@@ -10,10 +10,12 @@ on:
       - releases/*
     paths-ignore:
       - '**.md'
+  workflow_dispatch:
+
 
 jobs:
   call-basic-validation:
     name: Basic validation
-    uses: actions/reusable-workflows/.github/workflows/basic-validation.yml@main
+    uses: priyagupta108/reusable-workflows/.github/workflows/basic-validation.yml@update-licensed-tool
     with:
       node-version: '24.x'
